@@ -101,6 +101,29 @@ public class UserDAOImpl implements UserDAO {
             jdbcTemplate.update(sql, user.getName(), user.getPassword(),
                     user.getBookmark(), user.getId());        
     }
+	
+	public User checkUser(String name, String password) {
+           String sql = "Select * from login_users WHERE username= '"+ name +"' and password= '" + password +"'";
+           return jdbcTemplate.query(sql, new ResultSetExtractor<User>() {
+
+               @Override
+               public User extractData(ResultSet rs) throws SQLException,
+                       DataAccessException {
+                   if (rs.next()) {
+                       User user = new User();
+                       user.setId(rs.getInt("id"));
+                       user.setName(rs.getString("username"));
+                       user.setPassword(rs.getString("password"));
+                       user.setBookmark(rs.getString("bookmark"));
+                       return user;
+                   }
+                   
+                   return null;
+               }
+               
+           });
+
+       }
  
 
 }

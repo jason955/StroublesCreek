@@ -2,6 +2,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 <html>
     <head>
@@ -38,6 +40,20 @@
 	        	</tr>
 				</c:forEach>	        	
 			</table>
+		<table>
+			<tr>
+				<td>User Name:</td>
+				<td><input type="text" id="username"></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" id="password"></td>
+			</tr>
+			
+			
+		</table>
+		<input type="submit" onclick="login()" value="login">
+		
     	</div>
     </body>
     <script>
@@ -49,9 +65,24 @@
     		   dataType: "json",
      		   url: "http://localhost:8080/Stroubles/editBookmark?mark=" + bookmark,
     		   success: function(data){        
-    		     alert("jason");
     		   }
     		});
+    }
+    function login() {
+    	var value = document.getElementById("username").value;
+    	var value2 = document.getElementById("password").value;
+    	var userInfo = value + "~n0" + value2;
+    	$.ajax({ 
+ 		   type: "POST",
+  		   url: "http://localhost:8080/Stroubles/checkUser?mark=" + userInfo,
+           dataType : "json",
+ 		   success: function(data){ 
+ 			   alert(data.bookmark);
+ 		   },
+    		error: function (data) {
+            	alert(data + "error");
+        	}
+ 		});
     }
     </script>
 </html>

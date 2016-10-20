@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import net.codejava.spring.dao.UserDAO;
 import net.codejava.spring.model.User;
@@ -23,6 +25,7 @@ import net.codejava.spring.model.User;
  *
  */
 @Controller
+@EnableWebMvc
 public class HomeController {
 
 	@Autowired
@@ -68,6 +71,17 @@ public class HomeController {
 		
 		return model;
 	}
+	
+    @RequestMapping(value = "/checkUser", method = RequestMethod.POST, produces="application/json")
+    public @ResponseBody User checkUser(HttpServletRequest request) {
+        String[] parts = request.getParameterValues("mark")[0].split("~n0");
+        String name = parts[0];
+        String pass = parts[1];
+        User user2 = userDAO.checkUser(name, pass);
+
+        return user2;
+        
+    }
     @RequestMapping(value = "/editBookmark", method = RequestMethod.GET)
     public void editBookmark( @RequestParam(value="mark") String mark) {
         String[] parts = mark.split("~n0");
@@ -76,7 +90,9 @@ public class HomeController {
         int userId = Integer.parseInt(id);
         User user = userDAO.get(userId);
         user.setBookmark(bm);
-        userDAO.updateBookmark(user);        
+        userDAO.updateBookmark(user);     
+  
+        
     }
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public User getUser(@RequestParam(value="id") String id) {
@@ -84,4 +100,6 @@ public class HomeController {
         User user = userDAO.get(userId);
         return user;
     }
+    
+
 }

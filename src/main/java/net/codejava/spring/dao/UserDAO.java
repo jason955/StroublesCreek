@@ -37,5 +37,12 @@ public interface UserDAO {
 	 * @param user the user with a new bookmark
 	 */
 	public void updateBookmark(User user);
+	/**
+	 * checks if user is in db
+	 * @param name username
+	 * @param password password
+	 * @return true if yes false if no
+	 */
+	public User checkUser(String name, String password); 
 
 }
