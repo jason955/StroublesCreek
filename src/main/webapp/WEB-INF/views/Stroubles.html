@@ -406,7 +406,27 @@
                     viewpoint.releaseFieldRef('position');
                 }
             }
+			
+			if (buttonPressed(gp.buttons[0])) {
+				alert('A');
+				
+			} else if (buttonPressed(gp.buttons[2])) {
+				alert('Y');
+			}
+			if(buttonPressed(gp.buttons[1])) {
+				alert('B');
+			} else if(buttonPressed(gp.buttons[3])) {
+				alert('X');
+			}
+
         }
+		
+		function buttonPressed(b) {
+		  if (typeof(b) == "object") {
+			return b.pressed;
+		  }
+		  return b == 1.0;
+		}
 
         //Function returns the Gamepad axis which is moved
         //0.75 is chosen as the threshold heuristically
