@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import net.codejava.spring.dao.UserDAO;
+import net.codejava.spring.model.Bookmark3D;
 import net.codejava.spring.model.User;
 
 /**
@@ -100,6 +102,18 @@ public class HomeController {
         User user = userDAO.get(userId);
         return user;
     }
-    
+    @RequestMapping(value = "/getBook3D", method = RequestMethod.POST, produces="application/json")
+    public @ResponseBody Bookmark3D getBookmark3D(@RequestBody Bookmark3D bmrk) {
+      
+        Bookmark3D bmrkRet = userDAO.getBmark3D(bmrk.getName(), bmrk.getUser_id());
+
+        return bmrkRet;
+        
+    }
+    @RequestMapping(value = "/insertBook3D", method = RequestMethod.POST, produces="application/json")
+    public void insertBookmark3D(@RequestBody Bookmark3D bmrk) {
+        
+        userDAO.insertBmark(bmrk);
+    }
 
 }
