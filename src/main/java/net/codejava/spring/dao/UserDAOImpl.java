@@ -127,11 +127,11 @@ public class UserDAOImpl implements UserDAO {
     }
     
     public void insertBmark(Bookmark3D bmrk) {
-        String sql = "INSERT INTO bookmark3d (name, description, posX, posY, posZ, orient1, orient2, orient3, orient4)"
-                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO bookmark3d (name, description, posX, posY, posZ, orient1, orient2, orient3, orient4, cor1, cor2, cor3)"
+                + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, bmrk.getName(),
                 bmrk.getDescription(),bmrk.getPosX(), bmrk.getPosY(), bmrk.getPosZ(), bmrk.getOrient1(),
-                bmrk.getOrient2(), bmrk.getOrient3(), bmrk.getOrient4());
+                bmrk.getOrient2(), bmrk.getOrient3(), bmrk.getOrient4(), bmrk.getCor1(), bmrk.getCor2(), bmrk.getCor3());
      
     }
     public Bookmark3D getBmark3D(String name, int id) {
@@ -153,6 +153,9 @@ public class UserDAOImpl implements UserDAO {
                     bmrk.setOrient2(rs.getInt("orient2"));
                     bmrk.setOrient3(rs.getInt("orient3"));
                     bmrk.setOrient4(rs.getInt("orient4"));
+                    bmrk.setCor1(rs.getInt("cor1"));
+                    bmrk.setCor2(rs.getInt("cor2"));
+                    bmrk.setCor3(rs.getInt("cor3"));
 
                     return bmrk;
                 }
@@ -182,6 +185,10 @@ public class UserDAOImpl implements UserDAO {
                     bmrk.setOrient2(rs.getInt("orient2"));
                     bmrk.setOrient3(rs.getInt("orient3"));
                     bmrk.setOrient4(rs.getInt("orient4"));
+                    bmrk.setCor1(rs.getInt("cor1"));
+                    bmrk.setCor2(rs.getInt("cor2"));
+                    bmrk.setCor3(rs.getInt("cor3"));
+
 
                     return bmrk;
                 }

@@ -409,6 +409,7 @@
 			
 			if (buttonPressed(gp.buttons[0])) {
 				alert('A');
+				insertBookmark3D();
 				
 			} else if (buttonPressed(gp.buttons[2])) {
 				alert('Y');
@@ -417,6 +418,7 @@
 				alert('B');
 			} else if(buttonPressed(gp.buttons[3])) {
 				alert('X');
+				getBookmark3D();
 			}
 
         }
@@ -473,7 +475,67 @@
         }
 
 
+        function insertBookmark3D() {
+        	var element = document.getElementById("x3dElement");
+        	var view = element.runtime.viewpoint();
+        	var name = view.getAttribute("id");
+        	var desc = view.getAttribute("description");
+        	var center = view.getAttribute("centerOfRotation");
+        	var position = view.getAttribute("position");
+        	var orientation = view.getAttribute("orientation");
+        	alert(position);
+        	var posArr = position.split(",");
+        	alert(posArr[0] + " " + posArr[1]);
+        	var posX = 1;
+        	var posY = 2;
+        	var posZ = 3;
+        	var orient1 = 4;
+        	var orient2 = 5;
+        	var orient3 = 6;
+        	var orient4 = 7;
+        	var cor1 = 1;
+        	var cor2 = 2;
+        	var cor3 = 3;
+            var bmark = {"name":name,
+            		"description":desc,
+            		"posX":posX,
+            		"posY":posY,
+            		"posZ":posZ,
+            		"orient1":orient1,
+            		"orient2":orient2,
+            		"orient3":orient3,
+            		"orient4":orient4,
+            		"cor1":cor1,
+            		"cor2":cor2,
+            		"cor3":cor3,
+            		
+            		};
 
+
+                $.ajax({
+                    url: 'http://localhost:8080/Stroubles/insertBook3D',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(bmark),
+                    success: function (data) {
+                    	alert('yep');
+                    },
+                });
+        }
+        function getBookmark3D() {
+     
+
+                $.ajax({
+                    url: 'http://localhost:8080/Stroubles/getBook3DLast',
+                    type: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (data) {
+                    	alert('yarp');
+                    },
+                });
+        }
 
     </script>
 </body>

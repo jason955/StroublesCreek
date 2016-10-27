@@ -97,6 +97,9 @@
     	var orient2 = 5;
     	var orient3 = 6;
     	var orient4 = 7;
+    	var cor1 = 1;
+    	var cor2 = 2;
+    	var cor3 = 3;
         var bmark = {"name":name,
         		"description":desc,
         		"posX":posX,
@@ -105,7 +108,11 @@
         		"orient1":orient1,
         		"orient2":orient2,
         		"orient3":orient3,
-        		"orient4":orient4
+        		"orient4":orient4,
+        		"cor1":cor1,
+        		"cor2":cor2,
+        		"cor3":cor3,
+        		
         		};
 
 

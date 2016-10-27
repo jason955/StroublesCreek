@@ -11,8 +11,11 @@ public class Bookmark3D {
     private int orient2;
     private int orient3;
     private int orient4;
+    private int cor1;
+    private int cor2;
+    private int cor3;
     public Bookmark3D(int user_id, String name, String description, int posX, int posY,
-            int posZ, int orient1, int orient2, int orient3, int orient4) {
+            int posZ, int orient1, int orient2, int orient3, int orient4, int cor1, int cor2, int cor3) {
         this.user_id = user_id;
         this.name = name;
         this.description = description;
@@ -23,6 +26,27 @@ public class Bookmark3D {
         this.orient2 = orient2;
         this.orient3 = orient3;
         this.orient4 = orient4;
+        this.cor1 = cor1;
+        this.cor2 = cor2;
+        this.cor3 = cor3;
+    }
+    public int getCor1() {
+        return cor1;
+    }
+    public void setCor1(int cor1) {
+        this.cor1 = cor1;
+    }
+    public int getCor2() {
+        return cor2;
+    }
+    public void setCor2(int cor2) {
+        this.cor2 = cor2;
+    }
+    public int getCor3() {
+        return cor3;
+    }
+    public void setCor3(int cor3) {
+        this.cor3 = cor3;
     }
     public Bookmark3D() {
         
