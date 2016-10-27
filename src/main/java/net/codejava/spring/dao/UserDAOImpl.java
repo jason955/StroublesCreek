@@ -129,7 +129,7 @@ public class UserDAOImpl implements UserDAO {
     public void insertBmark(Bookmark3D bmrk) {
         String sql = "INSERT INTO bookmark3d (name, description, posX, posY, posZ, orient1, orient2, orient3, orient4)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, bmrk.getUser_id(), bmrk.getName(),
+        jdbcTemplate.update(sql, bmrk.getName(),
                 bmrk.getDescription(),bmrk.getPosX(), bmrk.getPosY(), bmrk.getPosZ(), bmrk.getOrient1(),
                 bmrk.getOrient2(), bmrk.getOrient3(), bmrk.getOrient4());
      
@@ -150,9 +150,38 @@ public class UserDAOImpl implements UserDAO {
                     bmrk.setPosY(rs.getInt("posY"));
                     bmrk.setPosZ(rs.getInt("posZ"));
                     bmrk.setOrient1(rs.getInt("orient1"));
-                    bmrk.setOrient2(rs.getInt("orient1"));
-                    bmrk.setOrient3(rs.getInt("orient1"));
-                    bmrk.setOrient4(rs.getInt("orient1"));
+                    bmrk.setOrient2(rs.getInt("orient2"));
+                    bmrk.setOrient3(rs.getInt("orient3"));
+                    bmrk.setOrient4(rs.getInt("orient4"));
+
+                    return bmrk;
+                }
+
+                return null;
+            }
+
+        });
+
+    }
+    public Bookmark3D getBmark3DLast() {
+        String sql = "Select * from bookmark3d ORDER BY user_id DESC LIMIT 1;";
+        return jdbcTemplate.query(sql, new ResultSetExtractor<Bookmark3D>() {
+
+            @Override
+            public Bookmark3D extractData(ResultSet rs) throws SQLException,
+            DataAccessException {
+                if (rs.next()) {
+                    Bookmark3D bmrk = new Bookmark3D(); 
+                    bmrk.setUser_id(rs.getInt("user_id"));
+                    bmrk.setName(rs.getString("name"));
+                    bmrk.setDescription(rs.getString("description"));
+                    bmrk.setPosX(rs.getInt("posX"));
+                    bmrk.setPosY(rs.getInt("posY"));
+                    bmrk.setPosZ(rs.getInt("posZ"));
+                    bmrk.setOrient1(rs.getInt("orient1"));
+                    bmrk.setOrient2(rs.getInt("orient2"));
+                    bmrk.setOrient3(rs.getInt("orient3"));
+                    bmrk.setOrient4(rs.getInt("orient4"));
 
                     return bmrk;
                 }

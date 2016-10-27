@@ -89,7 +89,7 @@
                                 <appearance>
                                     <material DEF='Red' diffuseColor='1 0 0'></material>
                                     <!-- Add the photosphere of your choice here -->
-                                    <imageTexture url="../../resources/images/bridge1.jpg"></imageTexture>
+                                    <imageTexture url="bridge1.jpg"></imageTexture>
                                 </appearance>
                                 <!-- Radius is set heuristically-->
                                 <sphere DEF='GeoSphere1' solid='false' radius='80'></sphere> 
@@ -107,7 +107,7 @@
                                 <appearance>
                                     <material DEF='Blue' diffuseColor='0 0 1'></material>
                                     <!-- Add the photosphere of your choice here -->
-                                    <imageTexture url="../../resources/images/banner.jpg"></imageTexture>
+                                    <imageTexture url="banner.jpg"></imageTexture>
                                 </appearance>
                                 <!-- Radius is set heuristically-->
                                 <sphere DEF='GeoSphere2' solid='false' radius='80'></sphere> 
@@ -406,7 +406,27 @@
                     viewpoint.releaseFieldRef('position');
                 }
             }
+			
+			if (buttonPressed(gp.buttons[0])) {
+				alert('A');
+				
+			} else if (buttonPressed(gp.buttons[2])) {
+				alert('Y');
+			}
+			if(buttonPressed(gp.buttons[1])) {
+				alert('B');
+			} else if(buttonPressed(gp.buttons[3])) {
+				alert('X');
+			}
+
         }
+		
+		function buttonPressed(b) {
+		  if (typeof(b) == "object") {
+			return b.pressed;
+		  }
+		  return b == 1.0;
+		}
 
         //Function returns the Gamepad axis which is moved
         //0.75 is chosen as the threshold heuristically

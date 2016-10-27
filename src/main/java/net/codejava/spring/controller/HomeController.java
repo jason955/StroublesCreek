@@ -41,7 +41,16 @@ public class HomeController {
 		
 		return model;
 	}
-	
+
+       @RequestMapping(value="/goVR")
+       public ModelAndView goVR2(ModelAndView model) throws IOException{
+           //List<User> listUser = userDAO.list();
+           //model.addObject("listUser", listUser);
+           model.setViewName("Photospheres");
+           
+           return model;
+       }
+	    
 	@RequestMapping(value = "/newUser", method = RequestMethod.GET)
 	public ModelAndView newUser(ModelAndView model) {
 		User newUser = new User();
@@ -74,16 +83,7 @@ public class HomeController {
 		return model;
 	}
 	
-    @RequestMapping(value = "/checkUser", method = RequestMethod.POST, produces="application/json")
-    public @ResponseBody User checkUser(HttpServletRequest request) {
-        String[] parts = request.getParameterValues("mark")[0].split("~n0");
-        String name = parts[0];
-        String pass = parts[1];
-        User user2 = userDAO.checkUser(name, pass);
 
-        return user2;
-        
-    }
     @RequestMapping(value = "/editBookmark", method = RequestMethod.GET)
     public void editBookmark( @RequestParam(value="mark") String mark) {
         String[] parts = mark.split("~n0");
@@ -102,7 +102,7 @@ public class HomeController {
         User user = userDAO.get(userId);
         return user;
     }
-    @RequestMapping(value = "/getBook3D", method = RequestMethod.POST, produces="application/json")
+    @RequestMapping(value = "/getBook3D", method = RequestMethod.GET, produces="application/json")
     public @ResponseBody Bookmark3D getBookmark3D(@RequestBody Bookmark3D bmrk) {
       
         Bookmark3D bmrkRet = userDAO.getBmark3D(bmrk.getName(), bmrk.getUser_id());
@@ -110,10 +110,31 @@ public class HomeController {
         return bmrkRet;
         
     }
-    @RequestMapping(value = "/insertBook3D", method = RequestMethod.POST, produces="application/json")
-    public void insertBookmark3D(@RequestBody Bookmark3D bmrk) {
+    
+    @RequestMapping(value = "/getBook3DLast", method = RequestMethod.POST, produces="application/json")
+    public @ResponseBody Bookmark3D getBookmark3DLast() {
+      
+        Bookmark3D bmrkRet = userDAO.getBmark3DLast();
+
+        return bmrkRet;
+        
+    }
+    @RequestMapping(value = "/checkUser", method = RequestMethod.POST, produces="application/json")
+    public @ResponseBody User checkUser(HttpServletRequest request) {
+        String[] parts = request.getParameterValues("mark")[0].split("~n0");
+        String name = parts[0];
+        String pass = parts[1];
+        User user2 = userDAO.checkUser(name, pass);
+
+        return user2;
+        
+    }
+    @RequestMapping(value = "/insertBook3D", method = RequestMethod.POST)
+    public @ResponseBody Bookmark3D insertBookmark3D(@RequestBody Bookmark3D bmrk) {
         
         userDAO.insertBmark(bmrk);
+        return bmrk;
+
     }
 
 }

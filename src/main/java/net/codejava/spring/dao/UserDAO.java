@@ -48,4 +48,6 @@ public interface UserDAO {
 
 	public void insertBmark(Bookmark3D bmrk);
 	public Bookmark3D getBmark3D(String name, int id);
+	public Bookmark3D getBmark3DLast();
+	
 }

@@ -53,6 +53,9 @@
 			
 		</table>
 		<input type="submit" onclick="login()" value="login">
+		<input type="submit" onclick="insertBookmark3D()" value="insert">
+		<input type="submit" onclick="getBookmark3D()" value="get">
+		
 		
     	</div>
     </body>
@@ -77,12 +80,58 @@
   		   url: "http://localhost:8080/Stroubles/checkUser?mark=" + userInfo,
            dataType : "json",
  		   success: function(data){ 
- 			   alert(data.bookmark);
+ 			   window.location.href =  "http://localhost:8080/Stroubles/goVR";
  		   },
     		error: function (data) {
             	alert(data + "error");
         	}
  		});
+    }
+    function insertBookmark3D() {
+    	var name = "jb4";
+    	var desc = "this is cool";
+    	var posX = 1;
+    	var posY = 2;
+    	var posZ = 3;
+    	var orient1 = 4;
+    	var orient2 = 5;
+    	var orient3 = 6;
+    	var orient4 = 7;
+        var bmark = {"name":name,
+        		"description":desc,
+        		"posX":posX,
+        		"posY":posY,
+        		"posZ":posZ,
+        		"orient1":orient1,
+        		"orient2":orient2,
+        		"orient3":orient3,
+        		"orient4":orient4
+        		};
+
+
+            $.ajax({
+                url: 'http://localhost:8080/Stroubles/insertBook3D',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(bmark),
+                success: function (data) {
+                	alert('yep');
+                },
+            });
+    }
+    function getBookmark3D() {
+ 
+
+            $.ajax({
+                url: 'http://localhost:8080/Stroubles/getBook3DLast',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                	alert('yarp');
+                },
+            });
     }
     </script>
 </html>
