@@ -4,6 +4,8 @@
         <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
         <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
         <script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
         <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/dev/x3dom.css'>
 
         <style>         
@@ -476,26 +478,24 @@
 
 
         function insertBookmark3D() {
-        	var element = document.getElementById("x3dElement");
-        	var view = element.runtime.viewpoint();
-        	var name = view.getAttribute("id");
-        	var desc = view.getAttribute("description");
-        	var center = view.getAttribute("centerOfRotation");
-        	var position = view.getAttribute("position");
-        	var orientation = view.getAttribute("orientation");
-        	alert(position);
-        	var posArr = position.split(",");
-        	alert(posArr[0] + " " + posArr[1]);
-        	var posX = 1;
-        	var posY = 2;
-        	var posZ = 3;
-        	var orient1 = 4;
-        	var orient2 = 5;
-        	var orient3 = 6;
-        	var orient4 = 7;
-        	var cor1 = 1;
-        	var cor2 = 2;
-        	var cor3 = 3;
+        	var desc = document.getElementById('vpp').getAttribute('description');
+        	var center = document.getElementById('vpp').getAttribute('centerOfRotation');
+        	var position = document.getElementById('vpp').getAttribute('position');
+        	var orientation = document.getElementById('vpp').getAttribute('orientation');
+        	var posArr = position.split(" ");
+    		var orientArr = orientation.split(",");
+    		var corArr = center.split(" ");
+        	var name = "bmark";
+        	var posX = posArr[0];
+        	var posY = posArr[1];
+        	var posZ = posArr[2];
+        	var orient1 = orientArr[0];
+        	var orient2 = orientArr[1];
+        	var orient3 = orientArr[2];
+        	var orient4 = orientArr[3];
+        	var cor1 = corArr[0];
+        	var cor2 = corArr[1];
+        	var cor3 = corArr[2];
             var bmark = {"name":name,
             		"description":desc,
             		"posX":posX,
@@ -510,8 +510,6 @@
             		"cor3":cor3,
             		
             		};
-
-
                 $.ajax({
                     url: 'http://localhost:8080/Stroubles/insertBook3D',
                     type: 'POST',
@@ -519,7 +517,7 @@
                     contentType: 'application/json',
                     data: JSON.stringify(bmark),
                     success: function (data) {
-                    	alert('yep');
+                    	alert('inserted');
                     },
                 });
         }
@@ -532,7 +530,11 @@
                     dataType: 'json',
                     contentType: 'application/json',
                     success: function (data) {
-                    	alert('yarp');
+                    	document.getElementById('vpp').setAttribute('description', "super sweet bmark");
+                        document.getElementById('vpp').setAttribute('centerOfRotation', data.cor1 + " " + data.cor2 + " " + data.cor3);
+                    	document.getElementById('vpp').setAttribute('position', data.posX + " " + data.posY + " " + data.posZ);
+                    	document.getElementById('vpp').setAttribute('orientation', data.orient1 + "," + data.orient2 + "," + 
+                    			data.orient3 + "," + data.orient4);
                     },
                 });
         }
