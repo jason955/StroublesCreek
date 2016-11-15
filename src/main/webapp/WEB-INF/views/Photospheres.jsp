@@ -1,213 +1,169 @@
 <html>
-    <head>
-        <title>Photosphere in WebVR 1.0 using X3DOM</title>
-        <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
-        <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
-        <script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/dev/x3dom.css'>
+<head>
+<title>Photosphere in WebVR 1.0 using X3DOM</title>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+<script type="text/javascript"
+	src="http://www.x3dom.org/download/dev/x3dom.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-        <style>         
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-            #enterVR {
-                background: rgba(0, 0, 0, .35) 50% 50% no-repeat;
-                background-size: 70% 70%;
-                color: #fff;
-                height: 50px;
-                width: 60px;
-                border: none;
-                background-color: rgba(120, 120, 120, .35);
-                padding: 1px 6px;
-                position:absolute;
-                bottom:10px; 
-                right:10px;
-                cursor: pointer;
-            }
-
-            #enterFS {
-                background: rgba(0, 0, 0, .35) 50% 50% no-repeat;
-                background-size: 70% 70%;
-                color: #fff;
-                height: 50px;
-                width: 70px;
-                border: none;
-                background-color: rgba(120, 120, 120, .35);
-                padding: 1px 6px;
-                position:absolute;
-                bottom:10px; 
-                right:80px;
-                cursor: pointer;
-            }
-
-            #exitVR {
-                background: rgba(0, 0, 0, .35) 50% 50% no-repeat;
-                background-size: 70% 70%;
-                color: #fff;
-                height: 50px;
-                width: 60px;
-                border: none;
-                background-color: rgba(120, 120, 120, .35);
-                padding: 1px 6px;
-                position:absolute;
-                bottom:10px; 
-                right:160px;
-                cursor: pointer;
-            }
-
-            #enterVR:hover,#enterFS:hover, #exitVR:hover {
-                background-color: rgba(120, 120, 120, .65);
-            }
-
-            .goggles {
-                height: 30px;
-                text-align: center;
-                color: buttontext;
-            }
-
-        </style>     
-
-    </head>
-    <body style='width:100%; height:100%; border:0; margin:0; padding:0;'>
-
-    <x3d id='x3dElement' showStat='false' showLog='false' style='width:100%; height:100%; border:0; margin:0; padding:0;'>
-        
-        <scene id='scene'>
-            <Environment frustumCulling="false"></Environment>           
-            <navigationInfo DEF='NavigationInfo1' type='"EXAMINE" "ANY"'></navigationInfo>
-
-            <viewpoint id='vpp' def='vp' description='ViewPoint 1' centerofrotation='3.4625 1.73998 -5.55'
-                       orientation='0 1 0 2.99229' position='4.17102 1.00905 -6.97228'
-                       znear="0.001" zfar="300"></viewpoint> 
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel='stylesheet' type='text/css'
+	href='http://www.x3dom.org/download/dev/x3dom.css'>
 
 
-            <viewpoint def='AOPT_CAM' centerofrotation='3.4625 1.73998 -5.55' position='3.4625 1.73998 8.69028'></viewpoint>
-            <background DEF='bgnd' skyColor="0 0 0"></background>
-            <group id='root' render='true'>
-                <anchor url="_3DBBurg_local1.x3d">
-                    <group DEF='theScene'>                    
-                        <transform DEF='dad_Group1' translation='0 7.75 0'>
-                            <shape DEF='Sphere1'>
-                                <appearance>
-                                    <material DEF='Red' diffuseColor='1 0 0'></material>
-                                    <!-- Add the photosphere of your choice here -->
-                                    <imageTexture url="http://localhost/bridge1.jpg"></imageTexture>
-                                </appearance>
-                                <!-- Radius is set heuristically-->
-                                <sphere DEF='GeoSphere1' solid='false' radius='80'></sphere> 
-                            </shape>
-                            <viewpoint DEF='Viewpoint1' description='Main View' position='0 0 0' fieldOfView='0.95993'></viewpoint>
-                        </transform>
-                        <navigationInfo DEF='NavigationInfo1' type='"EXAMINE" "ANY"'></navigationInfo>
-                        <viewpoint DEF='Viewpoint2' description='Viewpoint2' position='0 1.6 4.5' fieldOfView='0.7854'></viewpoint>                 
-                    </group>
-                </anchor>
-                <switch witchChoice='0'>
-                    <group>
-                        <transform DEF='dad_Group2' translation='0 2 0'>
-                            <shape DEF='Sphere2'>
-                                <appearance>
-                                    <material DEF='Blue' diffuseColor='0 0 1'></material>
-                                    <!-- Add the photosphere of your choice here -->
-                                    <imageTexture url="http://localhost/banner.jpg"></imageTexture>
-                                </appearance>
-                                <!-- Radius is set heuristically-->
-                                <sphere DEF='GeoSphere2' solid='false' radius='80'></sphere> 
-                            </shape>
-                        </transform>
-                    </group>
-                </switch>
-            </group>
+<style>
+#enterVR {
+	background: rgba(0, 0, 0, .35) 50% 50% no-repeat;
+	background-size: 70% 70%;
+	color: #fff;
+	height: 50px;
+	width: 60px;
+	border: none;
+	background-color: rgba(120, 120, 120, .35);
+	padding: 1px 6px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	cursor: pointer;
+}
 
-            <!-- stereo-->
-            <group id = "stereo" render="false">
-                <group def='left'>
-                    <shape>
-                        <appearance>
-                            <renderedtexture id="rtLeft" stereoMode="LEFT_EYE" update='ALWAYS' oculusRiftVersion="2"
-                                             dimensions='640 800 4' repeatS='false' repeatT='false'>
-                                <viewpoint use='vp' containerfield='viewpoint'></viewpoint>
-                                <background use='bgnd' containerfield='background'></background>
-                                <group use='theScene' containerfield="scene"></group>
-                            </renderedtexture>
-                            <composedshader>
-                                <field name='tex' type='SFInt32' value='0'></field>
-                                <field name='leftEye' type='SFFloat' value='1'></field>
-                                <shaderpart type='VERTEX'>
-                                    attribute vec3 position;
-                                    attribute vec2 texcoord;
+#enterFS {
+	background: rgba(0, 0, 0, .35) 50% 50% no-repeat;
+	background-size: 70% 70%;
+	color: #fff;
+	height: 50px;
+	width: 70px;
+	border: none;
+	background-color: rgba(120, 120, 120, .35);
+	padding: 1px 6px;
+	position: absolute;
+	bottom: 10px;
+	right: 80px;
+	cursor: pointer;
+}
 
-                                    uniform mat4 modelViewProjectionMatrix;
-                                    varying vec2 fragTexCoord;
+#exitVR {
+	background: rgba(0, 0, 0, .35) 50% 50% no-repeat;
+	background-size: 70% 70%;
+	color: #fff;
+	height: 50px;
+	width: 60px;
+	border: none;
+	background-color: rgba(120, 120, 120, .35);
+	padding: 1px 6px;
+	position: absolute;
+	bottom: 10px;
+	right: 160px;
+	cursor: pointer;
+}
 
-                                    void main()
-                                    {
-                                    vec2 pos = sign(position.xy);
-                                    fragTexCoord = texcoord;
+#enterVR:hover, #enterFS:hover, #exitVR:hover {
+	background-color: rgba(120, 120, 120, .65);
+}
 
-                                    gl_Position = vec4((pos.x - 1.0) / 2.0, pos.y, 0.0, 1.0);
-                                    //gl_Position = vec4(pos.xy / 4.0 + vec2(-0.75,0.75), 0.0, 1.0);
-                                    }
-                                </shaderpart>
-                                <shaderpart def="frag" type='FRAGMENT'>
-                                    #ifdef GL_ES
-                                    precision highp float;
-                                    #endif
+.goggles {
+	height: 30px;
+	text-align: center;
+	color: buttontext;
+}
+</style>
 
-                                    uniform sampler2D tex;
-                                    varying vec2 fragTexCoord;
+</head>
+<body
+	style='width: 100%; height: 100%; border: 0; margin: 0; padding: 0;'>
 
-                                    void main()
-                                    {
-                                    vec3 col = texture2D(tex, fragTexCoord).rgb;
-                                    gl_FragColor = vec4(col, 1.0);
-                                    }                        
-                                </shaderpart>
-                            </composedshader>
-                        </appearance>
-                        <plane solid="false"></plane>
-                    </shape>
-                </group>
-                <group def='right'>
-                    <shape>
-                        <appearance>
-                            <renderedtexture id="rtRight" stereoMode="RIGHT_EYE" update='ALWAYS' oculusRiftVersion="2"
-                                             dimensions='640 800 4' repeatS='false' repeatT='false'>
-                                <viewpoint use='vp' containerfield='viewpoint'></viewpoint>
-                                <background use='bgnd' containerfield='background'></background>
-                                <group use='theScene' containerfield="scene"></group>
-                            </renderedtexture>
-                            <composedshader>
-                                <field name='tex' type='SFInt32' value='0'></field>
-                                <field name='leftEye' type='SFFloat' value='0'></field>
-                                <shaderpart type='VERTEX'>
-                                    attribute vec3 position;
-                                    attribute vec2 texcoord;
+	<x3d id='x3dElement' showStat='false' showLog='false'
+		style='width:100%; height:100%; border:0; margin:0; padding:0;'>
 
-                                    uniform mat4 modelViewProjectionMatrix;
-                                    varying vec2 fragTexCoord;
+	<scene id='scene'> <Environment frustumCulling="false"></Environment>
+	<navigationInfo DEF='NavigationInfo1' type='"EXAMINE" "ANY"'></navigationInfo>
 
-                                    void main()
-                                    {
-                                    vec2 pos = sign(position.xy);
-                                    fragTexCoord = texcoord;
+	<viewpoint id='vpp' def='vp' description='ViewPoint 1'
+		centerofrotation='3.4625 1.73998 -5.55' orientation='0 1 0 2.99229'
+		position='4.17102 1.00905 -6.97228' znear="0.001" zfar="300"></viewpoint>
 
-                                    gl_Position = vec4((pos.x + 1.0) / 2.0, pos.y, 0.0, 1.0);
-                                    }
-                                </shaderpart>
-                                <shaderpart use="frag" type='FRAGMENT'>
-                                </shaderpart>
-                            </composedshader>
-                        </appearance>
-                        <plane solid="false"></plane>
-                    </shape>
-                </group>
-            </group>
-        </scene>
-    </x3d>
 
-    <button id="enterFS" onclick="enterFS();">FullScreen</button>
-    <button id="enterVR" onclick="onVRRequestPresent();">Enter VR</button>
-    <button id="exitVR" onclick="onVRExitPresent();">Exit VR</button>
+	<viewpoint def='AOPT_CAM' centerofrotation='3.4625 1.73998 -5.55'
+		position='3.4625 1.73998 8.69028'></viewpoint> <background DEF='bgnd'
+		skyColor="0 0 0"></background> <group id='root' render='true'>
+	<anchor url="_3DBBurg_local1.x3d"> <group DEF='theScene'>
+	<transform DEF='dad_Group1' translation='0 7.75 0'> <shape
+		DEF='Sphere1'> <appearance> <material DEF='Red'
+		diffuseColor='1 0 0'></material> <!-- Add the photosphere of your choice here -->
+	<imageTexture url="http://localhost/bridge1.jpg"></imageTexture> </appearance> <!-- Radius is set heuristically-->
+	<sphere DEF='GeoSphere1' solid='false' radius='80'></sphere> </shape> <viewpoint
+		DEF='Viewpoint1' description='Main View' position='0 0 0'
+		fieldOfView='0.95993'></viewpoint> </transform> <navigationInfo
+		DEF='NavigationInfo1' type='"EXAMINE" "ANY"'></navigationInfo> <viewpoint
+		DEF='Viewpoint2' description='Viewpoint2' position='0 1.6 4.5'
+		fieldOfView='0.7854'></viewpoint> </group> </anchor> <switch witchChoice='0'>
+	<group> <transform DEF='dad_Group2' translation='0 2 0'>
+	<shape DEF='Sphere2'> <appearance> <material
+		DEF='Blue' diffuseColor='0 0 1'></material> <!-- Add the photosphere of your choice here -->
+	<imageTexture url="http://localhost/banner.jpg"></imageTexture> </appearance> <!-- Radius is set heuristically-->
+	<sphere DEF='GeoSphere2' solid='false' radius='80'></sphere> </shape> </transform> </group> </switch> </group> <!-- stereo-->
+	<group id="stereo" render="false"> <group def='left'> <shape>
+	<appearance> <renderedtexture id="rtLeft"
+		stereoMode="LEFT_EYE" update='ALWAYS' oculusRiftVersion="2"
+		dimensions='640 800 4' repeatS='false' repeatT='false'>
+	<viewpoint use='vp' containerfield='viewpoint'></viewpoint> <background
+		use='bgnd' containerfield='background'></background> <group
+		use='theScene' containerfield="scene"></group> </renderedtexture> <composedshader>
+	<field name='tex' type='SFInt32' value='0'></field> <field
+		name='leftEye' type='SFFloat' value='1'></field> <shaderpart
+		type='VERTEX'> attribute vec3 position; attribute vec2
+	texcoord; uniform mat4 modelViewProjectionMatrix; varying vec2
+	fragTexCoord; void main() { vec2 pos = sign(position.xy); fragTexCoord
+	= texcoord; gl_Position = vec4((pos.x - 1.0) / 2.0, pos.y, 0.0, 1.0);
+	//gl_Position = vec4(pos.xy / 4.0 + vec2(-0.75,0.75), 0.0, 1.0); } </shaderpart> <shaderpart
+		def="frag" type='FRAGMENT'> #ifdef GL_ES precision highp
+	float; #endif uniform sampler2D tex; varying vec2 fragTexCoord; void
+	main() { vec3 col = texture2D(tex, fragTexCoord).rgb; gl_FragColor =
+	vec4(col, 1.0); } </shaderpart> </composedshader> </appearance> <plane solid="false"></plane> </shape> </group> <group def='right'>
+	<shape> <appearance> <renderedtexture id="rtRight"
+		stereoMode="RIGHT_EYE" update='ALWAYS' oculusRiftVersion="2"
+		dimensions='640 800 4' repeatS='false' repeatT='false'>
+	<viewpoint use='vp' containerfield='viewpoint'></viewpoint> <background
+		use='bgnd' containerfield='background'></background> <group
+		use='theScene' containerfield="scene"></group> </renderedtexture> <composedshader>
+	<field name='tex' type='SFInt32' value='0'></field> <field
+		name='leftEye' type='SFFloat' value='0'></field> <shaderpart
+		type='VERTEX'> attribute vec3 position; attribute vec2
+	texcoord; uniform mat4 modelViewProjectionMatrix; varying vec2
+	fragTexCoord; void main() { vec2 pos = sign(position.xy); fragTexCoord
+	= texcoord; gl_Position = vec4((pos.x + 1.0) / 2.0, pos.y, 0.0, 1.0); }
+	</shaderpart> <shaderpart use="frag" type='FRAGMENT'> </shaderpart> </composedshader> </appearance> <plane
+		solid="false"></plane> </shape> </group> </group> </scene> </x3d>
+
+	<button id="enterFS" onclick="enterFS();">FullScreen</button>
+	<button id="enterVR" onclick="onVRRequestPresent();">Enter VR</button>
+	<button id="exitVR" onclick="onVRExitPresent();">Exit VR</button>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Stroubles</h4>
+				</div>
+				<div class="modal-body">
+					<p>Hi! Welcome to this Stroubles Creek Photosphere. Please put on your VR Headset and grab a controller to begin your VR experience.
+					Remember, by pressing A you can take a screenshot of something you think looks cool and then X to go to Bookmark mode where you'll be able 
+					to cycle through all of your captured bookmarks! Please close this window and hit enter VR to begin.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 	<script>
 		var vrPresentButton = null;
@@ -225,7 +181,9 @@
 		var prevDirection = 0; //Last direction moved (-1 negative X or Z axis, 1 positive X or Z axis, 0 neutral)
 		var prevAxis = -1; // Last axis of gamepad that was moved, initialized to -1. 
 		var viewpoint = document.getElementById("vpp");
-
+		$( document ).ready(function() {
+			$('#myModal').modal('show');
+		});
 		//Poll for VR Displays
 		if (navigator.getVRDisplays) {
 			navigator
@@ -421,18 +379,18 @@
 			}
 
 			if (buttonPressed(gp.buttons[0])) {
-				alert('A');
+				//alert('A');
 				insertBookmark3D();
 
 			} else if (buttonPressed(gp.buttons[2])) {
-				alert('X');
+				//alert('X');
 				window.location.href = "http://localhost:8080/Stroubles/goBookmark";
 			}
 			if (buttonPressed(gp.buttons[1])) {
-				alert('B');
+				//alert('B');
 			} else if (buttonPressed(gp.buttons[3])) {
-				alert('Y');
-				getBookmark3D();
+				//alert('Y');
+				
 			}
 
 		}
@@ -532,49 +490,49 @@
 			});
 		}
 		function getBookmark3D() {
-			$.ajax({
-				url : 'http://localhost:8080/Stroubles/getBook3DLast',
-				type : 'POST',
-				dataType : 'json',
-				contentType : 'application/json',
-				success : function(data) {								
-					document.getElementById('vpp').setAttribute('description', "super sweet bmark");
-					document.getElementById('vpp').setAttribute('centerOfRotation', data.cor1 + " " + data.cor2 + " " + data.cor3);
-					document.getElementById('vpp').setAttribute('position', data.posX + " " + data.posY + " " + data.posZ);
-					document.getElementById('vpp').setAttribute('orientation',data.orient1 + "," + data.orient2 + "," + data.orient3 + "," + data.orient4);
-					//document.getElementById('vpp').setAttribute('set_bind','true')
+// 			$.ajax({
+// 				url : 'http://localhost:8080/Stroubles/getBook3DLast',
+// 				type : 'POST',
+// 				dataType : 'json',
+// 				contentType : 'application/json',
+// 				success : function(data) {								
+// 					document.getElementById('vpp').setAttribute('description', "super sweet bmark");
+// 					document.getElementById('vpp').setAttribute('centerOfRotation', data.cor1 + " " + data.cor2 + " " + data.cor3);
+// 					document.getElementById('vpp').setAttribute('position', data.posX + " " + data.posY + " " + data.posZ);
+// 					document.getElementById('vpp').setAttribute('orientation',data.orient1 + "," + data.orient2 + "," + data.orient3 + "," + data.orient4);
+// 					//document.getElementById('vpp').setAttribute('set_bind','true')
 
-					//Set Viewpoint according to HMD's position and orientation
-					var pose = vrDisplay.getPose();
-					var viewpoint = document.getElementById('vpp');
-					var orientation = pose.orientation;
-					var position = pose.position;
-					orientation[0] = parseFloat(data.orient1);
-					orientation[1] = parseFloat(data.orient2);
-					orientation[2] = parseFloat(data.orient3);
-					orientation[3] = parseFloat(data.orient4);
-					position[0] = parseFloat(data.posX);
-					position[0] = parseFloat(data.posY);
-					position[0] = parseFloat(data.posZ);
-					//alert(vrDisplay.getPose().orientation);
-					//vrDisplay.getPose().orientation[0] = parseFloat(data.orient1);
-					//vrDisplay.getPose().orientation[1] = parseFloat(data.orient2);
-					//vrDisplay.getPose().orientation[2] = parseFloat(data.orient3);
-					//vrDisplay.getPose().orientation[3] = parseFloat(data.orient4);
-					alert(vrDisplay.getPose().orientation);
+// 					//Set Viewpoint according to HMD's position and orientation
+// 					var pose = vrDisplay.getPose();
+// 					var viewpoint = document.getElementById('vpp');
+// 					var orientation = pose.orientation;
+// 					var position = pose.position;
+// 					orientation[0] = parseFloat(data.orient1);
+// 					orientation[1] = parseFloat(data.orient2);
+// 					orientation[2] = parseFloat(data.orient3);
+// 					orientation[3] = parseFloat(data.orient4);
+// 					position[0] = parseFloat(data.posX);
+// 					position[0] = parseFloat(data.posY);
+// 					position[0] = parseFloat(data.posZ);
+// 					//alert(vrDisplay.getPose().orientation);
+// 					//vrDisplay.getPose().orientation[0] = parseFloat(data.orient1);
+// 					//vrDisplay.getPose().orientation[1] = parseFloat(data.orient2);
+// 					//vrDisplay.getPose().orientation[2] = parseFloat(data.orient3);
+// 					//vrDisplay.getPose().orientation[3] = parseFloat(data.orient4);
+// 					alert(vrDisplay.getPose().orientation);
 
-					//alert(pose.orientation);
-//						alert(pose.orientation[0] + " "
-//								+ pose.orientation[1] + " "
-//								+ pose.orientation[2] + " "
-//								+ pose.orientation[3]);
-//						alert(pose.position[0] + " " + pose.position[1]
-//								+ " " + pose.position[2]);
-					vrDisplay.resetPose()
-					alert(vrDisplay.getPose().orientation);
+// 					//alert(pose.orientation);
+// //						alert(pose.orientation[0] + " "
+// //								+ pose.orientation[1] + " "
+// //								+ pose.orientation[2] + " "
+// //								+ pose.orientation[3]);
+// //						alert(pose.position[0] + " " + pose.position[1]
+// //								+ " " + pose.position[2]);
+// 					vrDisplay.resetPose()
+// 					alert(vrDisplay.getPose().orientation);
 
-				},
-			});			
+// 				},
+// 			});			
 
 		}
 

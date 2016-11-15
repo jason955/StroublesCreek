@@ -11,55 +11,48 @@
 		<script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom.js"></script>
 		
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>User Manager Home</title>
+        <title>Login</title>
+		<style>
+		body {background-image: url("localhost/river.jpg");}
+		#login {
+			width: 500px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 200px;
+			border: 1px solid;
+			border-radius: 10px;
+			background-color: rgba(0,0,0,0.8) ;
+			padding-top: 75px;
+			padding-bottom: 75px;
+			
+			
+		}
+		#log{
+			color:white;
+		}
+		</style>
     </head>
     <body>
         
        
     
     	<div align="center">
-	        <h1>User List</h1>
-	        <h3><a href="newUser">New User</a></h3>
-	        <table border="1">
-	        	<th>No</th>
-	        	<th>User Name</th>
-	        	<th>Password</th>
-	        	<th>Bookmark</th>
-
-	        	
-				<c:forEach var="user" items="${listUser}" varStatus="status">
-	        	<tr>
-	        		<td>${status.index + 1}</td>
-					<td>${user.name}</td>
-					<td>${user.password}</td>
-					<td>${user.bookmark}</td>
-					<td>
-						<a href="editUser?id=${user.id}">Edit</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="deleteUser?id=${user.id}">Delete</a>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="submit" onclick="editBookmark(${user.id})" value="Edit Bookmark">
-						
-					</td>
-							
-	        	</tr>
-				</c:forEach>	        	
-			</table>
-		<table>
-			<tr>
-				<td>User Name:</td>
-				<td><input type="text" id="username"></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" id="password"></td>
-			</tr>
-			
-			
-		</table>
-		<input type="submit" onclick="login()" value="login">
-		<input type="submit" onclick="insertBookmark3D()" value="insert">
-		<input type="submit" onclick="getBookmark3D()" value="get">
+			<div id='login'>
+				<table>
+					<tr>
+						<td id='log'>User Name:</td>
+						<td><input type="text" id="username"></td>
+					</tr>
+					<tr>
+						<td id='log'>Password:</td>
+						<td><input type="password" id="password"></td>
+					</tr>
+					
+					
+				</table>
+				<input type="submit" onclick="login()" value="Login">
+				<a href="newUser">Create Account</a>
+			</div>
 		
 		
     	</div>

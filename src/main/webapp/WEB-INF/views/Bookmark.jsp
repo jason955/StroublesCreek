@@ -6,6 +6,7 @@
         <script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/dev/x3dom.css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
         <style>         
 
@@ -208,6 +209,25 @@
     <button id="enterFS" onclick="enterFS();">FullScreen</button>
     <button id="enterVR" onclick="onVRRequestPresent();">Enter VR</button>
     <button id="exitVR" onclick="onVRExitPresent();">Exit VR</button>
+    <div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Stroubles</h4>
+				</div>
+				<div class="modal-body">
+					<p>Hi! Welcome to Bookmark Mode. In this mode you can cycle through all your saved Bookmarks. To move forward press A and to go back press B!</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 	<script>
 		var count = 0;
@@ -434,19 +454,32 @@
 				}
 			}
 
-			if (buttonPressed(gp.buttons[0])) {
-				alert(vrB[count])
-				viewpoint.setAttribute("orientation", vrB[count].orient1 + " "
-									+ vrB[count].orient2 + " " + vrB[count].orient3 + " " + vrB[count].orient4);
-				count++;
+			if (buttonPressed(gp.buttons[0])) { //A
+				if (count < vrB.length) {
+					viewpoint.setAttribute("orientation", vrB[count].orient1 + " "
+										+ vrB[count].orient2 + " " + vrB[count].orient3 + " " + vrB[count].orient4);
+					count++;
+				}
+				else {
+					count = 0;
+				}
 
 			} else if (buttonPressed(gp.buttons[2])) {
-				alert('X');
+				//alert('X');
 			}
 			if (buttonPressed(gp.buttons[1])) {
-				alert('B');
+				count--;
+
+				if (count >= 0) {
+					viewpoint.setAttribute("orientation", vrB[count].orient1 + " "
+										+ vrB[count].orient2 + " " + vrB[count].orient3 + " " + vrB[count].orient4);
+				}
+				else {
+					count = vrB.length - 1;
+				}
+				//alert('B');
 			} else if (buttonPressed(gp.buttons[3])) {
-				alert('Y');
+				//alert('Y');
 			}
 
 		}
