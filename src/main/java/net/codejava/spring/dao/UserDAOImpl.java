@@ -73,7 +73,35 @@ public class UserDAOImpl implements UserDAO {
 
         return listUser;
     }
+    @Override
+    public List<Bookmark3D> listBmark() {
+        String sql = "SELECT * FROM bookmark3D";
+        List<Bookmark3D> listBmark = jdbcTemplate.query(sql, new RowMapper<Bookmark3D>() {
 
+            @Override
+            public Bookmark3D mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Bookmark3D bmrk = new Bookmark3D(); 
+                bmrk.setUser_id(rs.getInt("user_id"));
+                bmrk.setName(rs.getString("name"));
+                bmrk.setDescription(rs.getString("description"));
+                bmrk.setPosX(rs.getString("posX"));
+                bmrk.setPosY(rs.getString("posY"));
+                bmrk.setPosZ(rs.getString("posZ"));
+                bmrk.setOrient1(rs.getString("orient1"));
+                bmrk.setOrient2(rs.getString("orient2"));
+                bmrk.setOrient3(rs.getString("orient3"));
+                bmrk.setOrient4(rs.getString("orient4"));
+                bmrk.setCor1(rs.getString("cor1"));
+                bmrk.setCor2(rs.getString("cor2"));
+                bmrk.setCor3(rs.getString("cor3"));
+
+                return bmrk;
+            }
+
+        });
+
+        return listBmark;
+    }
     @Override
     public User get(int userID) {
         String sql = "SELECT * FROM login_users WHERE id=" + userID;
@@ -146,16 +174,16 @@ public class UserDAOImpl implements UserDAO {
                     bmrk.setUser_id(rs.getInt("user_id"));
                     bmrk.setName(rs.getString("name"));
                     bmrk.setDescription(rs.getString("description"));
-                    bmrk.setPosX(rs.getInt("posX"));
-                    bmrk.setPosY(rs.getInt("posY"));
-                    bmrk.setPosZ(rs.getInt("posZ"));
-                    bmrk.setOrient1(rs.getInt("orient1"));
-                    bmrk.setOrient2(rs.getInt("orient2"));
-                    bmrk.setOrient3(rs.getInt("orient3"));
-                    bmrk.setOrient4(rs.getInt("orient4"));
-                    bmrk.setCor1(rs.getInt("cor1"));
-                    bmrk.setCor2(rs.getInt("cor2"));
-                    bmrk.setCor3(rs.getInt("cor3"));
+                    bmrk.setPosX(rs.getString("posX"));
+                    bmrk.setPosY(rs.getString("posY"));
+                    bmrk.setPosZ(rs.getString("posZ"));
+                    bmrk.setOrient1(rs.getString("orient1"));
+                    bmrk.setOrient2(rs.getString("orient2"));
+                    bmrk.setOrient3(rs.getString("orient3"));
+                    bmrk.setOrient4(rs.getString("orient4"));
+                    bmrk.setCor1(rs.getString("cor1"));
+                    bmrk.setCor2(rs.getString("cor2"));
+                    bmrk.setCor3(rs.getString("cor3"));
 
                     return bmrk;
                 }
@@ -178,16 +206,16 @@ public class UserDAOImpl implements UserDAO {
                     bmrk.setUser_id(rs.getInt("user_id"));
                     bmrk.setName(rs.getString("name"));
                     bmrk.setDescription(rs.getString("description"));
-                    bmrk.setPosX(rs.getInt("posX"));
-                    bmrk.setPosY(rs.getInt("posY"));
-                    bmrk.setPosZ(rs.getInt("posZ"));
-                    bmrk.setOrient1(rs.getInt("orient1"));
-                    bmrk.setOrient2(rs.getInt("orient2"));
-                    bmrk.setOrient3(rs.getInt("orient3"));
-                    bmrk.setOrient4(rs.getInt("orient4"));
-                    bmrk.setCor1(rs.getInt("cor1"));
-                    bmrk.setCor2(rs.getInt("cor2"));
-                    bmrk.setCor3(rs.getInt("cor3"));
+                    bmrk.setPosX(rs.getString("posX"));
+                    bmrk.setPosY(rs.getString("posY"));
+                    bmrk.setPosZ(rs.getString("posZ"));
+                    bmrk.setOrient1(rs.getString("orient1"));
+                    bmrk.setOrient2(rs.getString("orient2"));
+                    bmrk.setOrient3(rs.getString("orient3"));
+                    bmrk.setOrient4(rs.getString("orient4"));
+                    bmrk.setCor1(rs.getString("cor1"));
+                    bmrk.setCor2(rs.getString("cor2"));
+                    bmrk.setCor3(rs.getString("cor3"));
 
 
                     return bmrk;

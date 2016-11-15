@@ -41,12 +41,26 @@ public class HomeController {
 		
 		return model;
 	}
+	   @RequestMapping(value="/bridge.jpg")
+	    public ModelAndView bridge(ModelAndView model) throws IOException{
+	        model.setViewName("bridge.jpg");
+	        
+	        return model;
+	    }
 
        @RequestMapping(value="/goVR")
        public ModelAndView goVR2(ModelAndView model) throws IOException{
            //List<User> listUser = userDAO.list();
            //model.addObject("listUser", listUser);
            model.setViewName("Photospheres");
+           
+           return model;
+       }
+       @RequestMapping(value="/goBookmark")
+       public ModelAndView goVR3(ModelAndView model) throws IOException{
+           //List<User> listUser = userDAO.list();
+           //model.addObject("listUser", listUser);
+           model.setViewName("Bookmark");
            
            return model;
        }
@@ -135,6 +149,14 @@ public class HomeController {
         userDAO.insertBmark(bmrk);
         return bmrk;
 
+    }
+    @RequestMapping(value = "/getBook3DAll", method = RequestMethod.POST, produces="application/json")
+    public @ResponseBody List<Bookmark3D> getBookmark3DAll() {
+      
+        List<Bookmark3D> bmrkRet = userDAO.listBmark();
+
+        return bmrkRet;
+        
     }
 
 }

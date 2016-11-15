@@ -4,18 +4,18 @@ public class Bookmark3D {
     private int user_id;
     private String name;
     private String description;
-    private int posX;
-    private int posY;
-    private int posZ;
-    private int orient1;
-    private int orient2;
-    private int orient3;
-    private int orient4;
-    private int cor1;
-    private int cor2;
-    private int cor3;
-    public Bookmark3D(int user_id, String name, String description, int posX, int posY,
-            int posZ, int orient1, int orient2, int orient3, int orient4, int cor1, int cor2, int cor3) {
+    private String posX;
+    private String posY;
+    private String posZ;
+    private String orient1;
+    private String orient2;
+    private String orient3;
+    private String orient4;
+    private String cor1;
+    private String cor2;
+    private String cor3;
+    public Bookmark3D(int user_id, String name, String description, String posX, String posY,
+            String posZ, String orient1, String orient2, String orient3, String orient4, String cor1, String cor2, String cor3) {
         this.user_id = user_id;
         this.name = name;
         this.description = description;
@@ -30,22 +30,22 @@ public class Bookmark3D {
         this.cor2 = cor2;
         this.cor3 = cor3;
     }
-    public int getCor1() {
+    public String getCor1() {
         return cor1;
     }
-    public void setCor1(int cor1) {
+    public void setCor1(String cor1) {
         this.cor1 = cor1;
     }
-    public int getCor2() {
+    public String getCor2() {
         return cor2;
     }
-    public void setCor2(int cor2) {
+    public void setCor2(String cor2) {
         this.cor2 = cor2;
     }
-    public int getCor3() {
+    public String getCor3() {
         return cor3;
     }
-    public void setCor3(int cor3) {
+    public void setCor3(String cor3) {
         this.cor3 = cor3;
     }
     public Bookmark3D() {
@@ -69,46 +69,46 @@ public class Bookmark3D {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getPosX() {
+    public String getPosX() {
         return posX;
     }
-    public void setPosX(int posX) {
+    public void setPosX(String posX) {
         this.posX = posX;
     }
-    public int getPosY() {
+    public String getPosY() {
         return posY;
     }
-    public void setPosY(int posY) {
+    public void setPosY(String posY) {
         this.posY = posY;
     }
-    public int getPosZ() {
+    public String getPosZ() {
         return posZ;
     }
-    public void setPosZ(int posZ) {
+    public void setPosZ(String posZ) {
         this.posZ = posZ;
     }
-    public int getOrient1() {
+    public String getOrient1() {
         return orient1;
     }
-    public void setOrient1(int orient1) {
+    public void setOrient1(String orient1) {
         this.orient1 = orient1;
     }
-    public int getOrient2() {
+    public String getOrient2() {
         return orient2;
     }
-    public void setOrient2(int orient2) {
+    public void setOrient2(String orient2) {
         this.orient2 = orient2;
     }
-    public int getOrient3() {
+    public String getOrient3() {
         return orient3;
     }
-    public void setOrient3(int orient3) {
+    public void setOrient3(String orient3) {
         this.orient3 = orient3;
     }
-    public int getOrient4() {
+    public String getOrient4() {
         return orient4;
     }
-    public void setOrient4(int orient4) {
+    public void setOrient4(String orient4) {
         this.orient4 = orient4;
     }
 }
