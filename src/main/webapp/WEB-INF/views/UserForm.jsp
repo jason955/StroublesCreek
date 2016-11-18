@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Account Creation</title>
 		<style>
-		body {background-image: url("localhost/river.jpg");}
+		body {background-image: url("http://localhost/river.jpg");}
 		#login {
 			width: 500px;
 			margin-left: auto;

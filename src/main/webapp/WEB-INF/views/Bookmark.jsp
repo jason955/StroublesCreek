@@ -3,10 +3,18 @@
         <title>Photosphere in WebVR 1.0 using X3DOM</title>
         <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
         <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
-        <script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link rel='stylesheet' type='text/css' href='http://www.x3dom.org/download/dev/x3dom.css'>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="http://www.x3dom.org/download/dev/x3dom.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel='stylesheet' type='text/css'
+	href='http://www.x3dom.org/download/dev/x3dom.css'>
+
 
         <style>         
 
@@ -258,7 +266,7 @@
 					vrB = data;
 				},
 			});
-			alert(vrB[0].orient1);
+			$('#myModal').modal('show');
 		});
 		//Poll for VR Displays
 		if (navigator.getVRDisplays) {
@@ -462,20 +470,32 @@
 				}
 				else {
 					count = 0;
+					viewpoint.setAttribute("orientation", vrB[count].orient1 + " "
+							+ vrB[count].orient2 + " " + vrB[count].orient3 + " " + vrB[count].orient4);
+					count = 1;
 				}
 
 			} else if (buttonPressed(gp.buttons[2])) {
 				//alert('X');
 			}
 			if (buttonPressed(gp.buttons[1])) {
-				count--;
+				
 
 				if (count >= 0) {
+					if (count == vrB.length) {
+						count--;
+						count--
+					}
 					viewpoint.setAttribute("orientation", vrB[count].orient1 + " "
 										+ vrB[count].orient2 + " " + vrB[count].orient3 + " " + vrB[count].orient4);
+					count--;
+
 				}
 				else {
 					count = vrB.length - 1;
+					viewpoint.setAttribute("orientation", vrB[count].orient1 + " "
+							+ vrB[count].orient2 + " " + vrB[count].orient3 + " " + vrB[count].orient4);
+					count = vrB.length - 2;
 				}
 				//alert('B');
 			} else if (buttonPressed(gp.buttons[3])) {
