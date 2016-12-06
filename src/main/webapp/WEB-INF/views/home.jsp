@@ -7,8 +7,11 @@
 
 <html>
     <head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom.js"></script>
+		<script 
+src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script
+>
+		<script type="text/javascript" 
+src="http://www.x3dom.org/download/dev/x3dom.js"></script>
 		
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
@@ -18,7 +21,7 @@
 			width: 500px;
 			margin-left: auto;
 			margin-right: auto;
-			margin-top: 200px;
+			margin-top: 150px;
 			border: 1px solid;
 			border-radius: 10px;
 			background-color: rgba(0,0,0,0.8) ;
@@ -30,13 +33,58 @@
 		#log{
 			color:white;
 		}
+		#center {
+			width:100%;
+			height:100%;
+		}
+		#logs {
+		  font: bold 12px Serif;
+		  text-decoration: none;
+		  background-color: #EEEEEE;
+		  color: #333333;
+		  padding: 2px 6px 2px 6px;
+		  border-top: 1px solid #CCCCCC;
+		  border-right: 1px solid #333333;
+		  border-bottom: 1px solid #333333;
+		  border-left: 1px solid #CCCCCC;
+		  margin-right: 54px;
+		}
+		#newAcct {
+		  font: bold 11px Arial;
+		  text-decoration: none;
+		  background-color: #EEEEEE;
+		  color: #333333;
+		  padding: 2px 6px 2px 6px;
+		  border-top: 1px solid #CCCCCC;
+		  border-right: 1px solid #333333;
+		  border-bottom: 1px solid #333333;
+		  border-left: 1px solid #CCCCCC;
+		  margin-left: 54px;
+		}
+		#header {
+			width: 100%;
+			border: 1px solid;
+			background-color: black;
+		}
+		h1 {
+			font-family: Serif;
+		    color: #c7dce2;
+
+			
+		}
+		h2 {
+			font-family: Serif;
+		    color: #c7dce2;
+		}
 		</style>
     </head>
     <body>
         
-       
-    
-    	<div align="center">
+    	<div id= "center" align="center">
+			<div id="header">
+			<h1> Welcome to the Stroubles Creek learning center!</h1>
+			<h2>  Please login or make an account </h2>
+			</div>
 			<div id='login'>
 				<table>
 					<tr>
@@ -50,8 +98,8 @@
 					
 					
 				</table>
-				<input type="submit" onclick="login()" value="Login">
-				<a href="newUser">Create Account</a>
+				<input id="logs" type="submit" onclick="login()" value="Login">
+				<a href="newUser" id="newAcct">Create Account</a>
 			</div>
 		
 		
